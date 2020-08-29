@@ -4,4 +4,4 @@ MarkupSafe==0.23
 Werkzeug==0.9.6
 itsdangerous==0.24
 picamera==1.8
-opencv-python==4.4.0
+opencv-python==4.3.0.38
