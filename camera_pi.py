@@ -2,7 +2,7 @@ import cv2
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 
-class VideoCamera(object):
+class Camera(object):
     def __init__(self):
         # Using OpenCV to capture from device 0. If you have trouble capturing
         # from a webcam, comment the line below out and use a video file
@@ -18,7 +18,7 @@ class VideoCamera(object):
         self.rawCapture = PiRGBArray(self.camera, size=(720, 483))
         # Get a generator object that serves up the frames
         self.frame_gen = self.camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True)
-         
+
     def __del__(self):
 #        self.video.release()
         pass
@@ -36,4 +36,3 @@ class VideoCamera(object):
         ret, jpeg = cv2.imencode('.jpg', image)       # jpeg to buffer
         self.rawCapture.truncate(0)                     # clear stream in prep for next frame
         return jpeg.tostring()
-    
