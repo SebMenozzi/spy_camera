@@ -2,6 +2,7 @@ import time
 import datetime
 import cv2
 import imutils
+import numpy as np
 from base_camera import BaseCamera
 
 class Camera(BaseCamera):
@@ -20,6 +21,7 @@ class Camera(BaseCamera):
             img = imutils.rotate(img, 180)
             img = imutils.resize(img, width=450)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img = np.dstack([ img, img, img ])
 
             timestamp = datetime.datetime.now()
             ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
