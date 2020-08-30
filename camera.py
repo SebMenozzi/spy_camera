@@ -8,7 +8,7 @@ from base_camera import BaseCamera
 class Camera(BaseCamera):
 
     @staticmethod
-    def frames(self):
+    def frames():
         camera = cv2.VideoCapture(0)
 
         if not camera.isOpened():
