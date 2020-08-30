@@ -15,7 +15,7 @@ class Camera(object):
         self.camera = PiCamera()
         self.camera.resolution = (720, 483)
         self.camera.framerate = 60
-        self.rawCapture = PiRGBArray(self.camera, size=(720, 483))
+        self.rawCapture = PiRGBArray(self.camera)
         # Get a generator object that serves up the frames
         self.frame_gen = self.camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True)
 
