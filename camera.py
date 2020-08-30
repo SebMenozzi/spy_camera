@@ -21,6 +21,6 @@ class Camera(object):
         cv2.putText(img, ts, (20, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
             0.6, (0, 0, 255), 1)
 
-        ret, jpeg = cv2.imencode('.jpg', new_img)
+        ret, jpeg = cv2.imencode('.jpg', img)
 
         return jpeg.tostring()
