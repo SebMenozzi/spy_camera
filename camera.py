@@ -14,7 +14,7 @@ class Camera(object):
 
     def get_frame(self):
         success, img = self.cam.read()
-        img = cv2.rotate(img, rotateCode=180)
+        img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 
         timestamp = datetime.datetime.now()
         ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
