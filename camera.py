@@ -19,7 +19,7 @@ class Camera(object):
         timestamp = datetime.datetime.now()
         ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
         cv2.putText(img, ts, (20, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
-            0.6, (0, 0, 255), 1)
+            0.6, (255, 255, 255), 1)
 
         ret, jpeg = cv2.imencode('.jpg', img)
 
