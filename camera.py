@@ -12,7 +12,7 @@ class Camera(object):
     def __del__(self):
         self.cam.release()
 
-    def rotate_bound(image, angle):
+    def rotate_bound(self, image, angle):
         # grab the dimensions of the image and then determine the
         # center
         (h, w) = image.shape[:2]
