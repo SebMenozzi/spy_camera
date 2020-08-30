@@ -6,6 +6,9 @@ from base_camera import BaseCamera
 
 class Camera(BaseCamera):
 
+    def __init__(self):
+        super(Camera, self).__init__()
+
     @staticmethod
     def frames(self):
         camera = cv2.VideoCapture(0)
