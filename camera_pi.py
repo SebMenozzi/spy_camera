@@ -31,7 +31,7 @@ class Camera(object):
         #ret, jpeg = cv2.imencode('.jpg', image)
         #return jpeg.tobytes()
         # --------------- ARW -------------
-        frame = self.frame_gen.next()                   # get next frame
+        frame = next(self.frame_gen)                  # get next frame
         image = frame.array
         ret, jpeg = cv2.imencode('.jpg', image)       # jpeg to buffer
         self.rawCapture.truncate(0)                     # clear stream in prep for next frame
