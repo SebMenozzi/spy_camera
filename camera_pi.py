@@ -1,38 +1,22 @@
-import cv2
-from picamera.array import PiRGBArray
+import io
+import time
 from picamera import PiCamera
+from base_camera import BaseCamera
 
-class Camera(object):
-    def __init__(self):
-        # Using OpenCV to capture from device 0. If you have trouble capturing
-        # from a webcam, comment the line below out and use a video file
-        # instead.
-        # self.video = cv2.VideoCapture(0)
-        # If you decide to use video.mp4, you must have this file in the folder
-        # as the main.py.
-        # self.video = cv2.VideoCapture('video.mp4')
-        # --------------- ARW -------------
-        self.camera = PiCamera()
-        self.camera.resolution = (1024, 768)
-        self.camera.framerate = 60
-        self.rawCapture = PiRGBArray(self.camera)
-        # Get a generator object that serves up the frames
-        self.frame_gen = self.camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True)
+class Camera(BaseCamera):
+    @staticmethod
+    def frames():
+        with picamera.PiCamera() as camera:
+            # let camera warm up
+            time.sleep(2)
 
-    def __del__(self):
-#        self.video.release()
-        pass
+            stream = io.BytesIO()
+            for _ in camera.capture_continuous(stream, 'jpeg',
+                                               use_video_port=True):
+                # return current frame
+                stream.seek(0)
+                yield stream.read()
 
-    def get_frame(self):
-        #success, image = self.video.read()
-        #   We are using Motion JPEG, but OpenCV defaults to capture raw images,
-        #   so we must encode it into JPEG in order to correctly display the
-        #   video stream.
-        #ret, jpeg = cv2.imencode('.jpg', image)
-        #return jpeg.tobytes()
-        # --------------- ARW -------------
-        frame = next(self.frame_gen)                  # get next frame
-        image = frame.array
-        ret, jpeg = cv2.imencode('.jpg', image)       # jpeg to buffer
-        self.rawCapture.truncate(0)                     # clear stream in prep for next frame
-        return jpeg.tostring()
+                # reset stream for next frame
+                stream.seek(0)
+                stream.truncate()
