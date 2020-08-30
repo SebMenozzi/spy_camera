@@ -15,6 +15,8 @@ class Camera(BaseCamera):
 
             # rotate image 180
             img = imutils.rotate(img, 180)
+            img = imutils.resize(img, width=450)
+	        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             timestamp = datetime.datetime.now()
             ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
