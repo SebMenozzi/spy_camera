@@ -5,3 +5,4 @@ Werkzeug==0.9.6
 itsdangerous==0.24
 picamera==1.8
 opencv-contrib-python==3.4.3.18
+imutils==0.5.3

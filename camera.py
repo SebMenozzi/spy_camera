@@ -1,12 +1,11 @@
 import time
 import datetime
 import cv2
+import imutils
 
 class Camera(object):
     def __init__(self):
         self.cam = cv2.VideoCapture(0)
-        #self.cam.set(3, 720)
-        #self.cam.set(4, 483)
         time.sleep(1)
 
     def __del__(self):
@@ -14,6 +13,8 @@ class Camera(object):
 
     def get_frame(self):
         success, img = self.cam.read()
+
+        img = imutils.rotate(frame, 180)
 
         timestamp = datetime.datetime.now()
         ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
