@@ -16,7 +16,7 @@ class Camera(BaseCamera):
 
         while True:
             # read current frame
-            _, img = self.cam.read()
+            _, img = camera.read()
 
             img = imutils.rotate(img, 180)
             img = imutils.resize(img, width=450)
