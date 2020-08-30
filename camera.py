@@ -19,13 +19,13 @@ class Camera(BaseCamera):
             _, img = camera.read()
 
             img = imutils.rotate(img, 180)
-            img = imutils.resize(img, width=250)
+            img = imutils.resize(img, width=350)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             img = np.dstack([ img, img, img ])
 
             timestamp = datetime.datetime.now()
             ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
-            cv2.putText(img, ts, (20, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
+            cv2.putText(img, ts, (16, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
                 0.6, (255, 255, 255), 1)
 
             # encode as a jpeg image and return it
