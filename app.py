@@ -1,15 +1,5 @@
 from flask import Flask, render_template, Response
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument('mode', type=int, help='It determines the mode')
-args = parser.parse_args()
-
-# 0 -> webcam, 1 -> picamera
-if args.mode == 0:
-	from camera import Camera
-else:
-    from camera_pi import Camera
+from camera import Camera
 
 app = Flask(__name__)
 
