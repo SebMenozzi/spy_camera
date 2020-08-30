@@ -14,13 +14,12 @@ class Camera(object):
 
     def get_frame(self):
         success, img = self.cam.read()
+        img = cv2.rotate(img, rotateCode=180)
 
         timestamp = datetime.datetime.now()
         ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
         cv2.putText(img, ts, (20, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
             0.6, (0, 0, 255), 1)
-
-        new_img = cv2.rotate(img, rotateCode=180)
 
         ret, jpeg = cv2.imencode('.jpg', new_img)
 
