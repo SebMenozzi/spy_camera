@@ -19,10 +19,9 @@ class Camera(BaseCamera):
             _, img = camera.read()
 
             img = imutils.rotate(img, 180)
-            img = imutils.resize(img, width=450)
+            img = imutils.resize(img, width=250)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             img = np.dstack([ img, img, img ])
-            img = cv2.fastNlMeansDenoisingColored(img, None, 10, 10 ,7 ,21)
 
             timestamp = datetime.datetime.now()
             ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
