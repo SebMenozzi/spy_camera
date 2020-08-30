@@ -13,7 +13,7 @@ class Camera(object):
         # self.video = cv2.VideoCapture('video.mp4')
         # --------------- ARW -------------
         self.camera = PiCamera()
-        self.camera.resolution = (720, 483)
+        self.camera.resolution = (1024, 768)
         self.camera.framerate = 60
         self.rawCapture = PiRGBArray(self.camera)
         # Get a generator object that serves up the frames
