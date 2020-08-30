@@ -1,6 +1,6 @@
 import io
 import time
-from picamera import PiCamera
+from picamera
 from base_camera import BaseCamera
 
 class Camera(BaseCamera):
