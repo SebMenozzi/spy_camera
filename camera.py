@@ -10,7 +10,7 @@ class Camera(BaseCamera):
         super(Camera, self).__init__()
 
     @staticmethod
-    def frames(self):
+    def frames():
         camera = cv2.VideoCapture(0)
 
         if not camera.isOpened():
