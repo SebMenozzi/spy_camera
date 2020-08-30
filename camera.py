@@ -3,17 +3,20 @@ import datetime
 import cv2
 import imutils
 from base_camera import BaseCamera
-from imutils.video import FileVideoStream
 
 class Camera(BaseCamera):
+
     @staticmethod
-    def frames():
-        fvs = FileVideoStream(0).start()
+    def frames(self):
+        camera = cv2.VideoCapture(0)
 
-        while fvs.more():
-            img = fvs.read()
+        if not camera.isOpened():
+            raise RuntimeError('Could not start camera.')
 
-            # rotate image 180
+        while True:
+            # read current frame
+            _, img = self.cam.read()
+
             img = imutils.rotate(img, 180)
             img = imutils.resize(img, width=450)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
