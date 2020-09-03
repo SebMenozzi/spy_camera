@@ -18,7 +18,7 @@ class Camera(BaseCamera):
             _, img = camera.read()
 
             img = imutils.rotate(img, 180)
-            img = imutils.resize(img, width=450)
+            #img = imutils.resize(img, width=450)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             img = np.dstack([ img, img, img ])
 
